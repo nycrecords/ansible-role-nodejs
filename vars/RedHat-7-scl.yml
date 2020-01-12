@@ -1,0 +1,6 @@
+---
+nodejs_packages: 
+  - rh-nodejs12
+  - rh-nodejs12-npm
+
+node_scl_enable_path: /opt/rh/rh-nodejs12/enable
