@@ -1,8 +1,11 @@
 {% if use_scl %}
     source {{ node_scl_enable_path }}
-    
 {% else %}
     export PATH={{ npm_config_prefix }}/bin:$PATH
 {% endif %}
 export NPM_CONFIG_PREFIX={{ npm_config_prefix }}
-export NODE_PATH=$NODE_PATH:{{ npm_config_prefix }}/lib/node_modules
+if [ -z "$NODE_PATH" ]; then
+    export NODE_PATH={{ npm_config_prefix }}/lib/node_modules
+else
+    export NODE_PATH=$NODE_PATH:{{ npm_config_prefix }}/lib/node_modules
+fi

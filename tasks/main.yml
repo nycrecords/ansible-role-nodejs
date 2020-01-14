@@ -41,6 +41,8 @@
     NPM_CONFIG_PREFIX: "{{ npm_config_prefix }}"
     NODE_PATH: "{{ npm_config_prefix }}/lib/node_modules"
     NPM_CONFIG_UNSAFE_PERM: "{{ npm_config_unsafe_perm }}"
+  become: yes
+  become_user: "{{ nodejs_install_npm_user }}"
   with_items: "{{ nodejs_npm_global_packages }}"
   tags: ['skip_ansible_lint']
 
