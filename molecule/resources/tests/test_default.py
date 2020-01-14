@@ -7,38 +7,21 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
 ).get_hosts("all")
 
 
-def test_postgresql_installed(host):
-    postgresql = host.package("rh-postgresql96")
+def test_nodejs_installed(host):
+    nodejs = host.package("rh-nodejs12")
 
-    assert postgresql.is_installed
-
-
-def test_postgres_listening(host):
-    socket = host.socket("tcp://127.0.0.1:5432")
-
-    assert socket.is_listening
+    assert nodejs.is_installed
 
 
-def test_postgresql_config_exists(host):
-    postgresql_conf = host.file(
-        "/var/opt/rh/rh-postgresql96/lib/pgsql/data/postgresql.conf"
-    )
+def test_npm_installed(host):
+    npm = host.package("rh-nodejs12-npm")
 
-    with host.sudo():
-        assert postgresql_conf.exists
-        assert postgresql_conf.is_file
-        assert postgresql_conf.user == "postgres"
-        assert postgresql_conf.group == "postgres"
+    assert npm.is_installed
 
 
-def test_hba_config(host):
-    pg_hba = host.file("/var/opt/rh/rh-postgresql96/lib/pgsql/data/pg_hba.conf")
+def test_node_global_packages_installed(host):
+    global_packages = host.run("npm -g list --depth 0")
 
-    with host.sudo():
-        jdoe_example = pg_hba.contains("host example jdoe 127.0.0.1/32   md5")
-
-        assert jdoe_example
-        assert pg_hba.exists
-        assert pg_hba.is_file
-        assert pg_hba.user == "postgres"
-        assert pg_hba.group == "postgres"
+    assert "jslint@0.12.0" in global_packages.stdout
+    assert "node-sass@4.13.0" in global_packages.stdout
+    assert "yo@3.1.1" in global_packages.stdout
