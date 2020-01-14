@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-molecule = {extras = ["docker"],version = "*"}
+molecule = {extras = ["ec2", "vagrant"],version = "*"}
 awscli = "*"
 
 [requires]
