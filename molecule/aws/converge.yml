@@ -22,5 +22,5 @@
       - name: yo
 
   roles:
-    - role: nycrecords.rhsm
+    - role: nycrecords.yum_config_manager
     - role: ansible-role-nodejs
