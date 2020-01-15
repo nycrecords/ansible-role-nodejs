@@ -30,6 +30,6 @@ provisioner:
             - rhel-server-rhscl-7-rpms
 verifier:
   name: testinfra
-  directory: ..//resources/tests/
+  directory: ../resources/tests/
   lint:
     name: flake8
