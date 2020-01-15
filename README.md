@@ -1,12 +1,17 @@
-# Ansible Role: Node.js
+Ansible Role: NodeJS
+========================
 
-[![Build Status](https://travis-ci.org/geerlingguy/ansible-role-nodejs.svg?branch=master)](https://travis-ci.org/geerlingguy/ansible-role-nodejs)
+![GitHub](https://img.shields.io/github/license/nycrecords/ansible-role-NodeJS)
+[![Build Status](https://travis-ci.com/nycrecords/ansible-role-NodeJS.svg?branch=master)](https://travis-ci.org/nycrecords/ansible-role-NodeJS)
+[![Galaxy](https://img.shields.io/badge/galaxy-nycrecords.NodeJS-blue.svg)](https://galaxy.ansible.com/nycrecords/NodeJS)
+![Ansible](https://img.shields.io/ansible/role/d/45803)
+![Ansible](https://img.shields.io/ansible/quality/45803)
 
 Installs Node.js on RHEL/CentOS or Debian/Ubuntu.
 
 ## Requirements
 
-None.
+On RedHat-based distributions, requires the EPEL repository (you can simply add the role geerlingguy.repo-epel to install ensure EPEL is available) or a valid RedHat Subscription.
 
 ## Role Variables
 
@@ -56,7 +61,7 @@ None.
       vars_files:
         - vars/main.yml
       roles:
-        - geerlingguy.nodejs
+        - nycrecords.nodejs
 
 *Inside `vars/main.yml`*:
 
@@ -71,3 +76,5 @@ MIT / BSD
 ## Author Information
 
 This role was created in 2014 by [Jeff Geerling](https://www.jeffgeerling.com/), author of [Ansible for DevOps](https://www.ansiblefordevops.com/).
+
+Modified by [Joel Castillo](https://github.com/joelbcastillo) for the [NYC Department of Records and Information Services](https://github.com/nycrecords).

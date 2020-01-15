@@ -1,0 +1,8 @@
+---
+- name: Include SCL Variables
+  include_vars: "{{ ansible_distribution }}-{{ ansible_distribution_version.split('.')[0] }}-scl.yml"
+
+- name: Install Node.js
+  yum:
+    name: "{{ nodejs_packages }}"
+    state: present

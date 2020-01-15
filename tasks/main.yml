@@ -1,6 +1,13 @@
 ---
 - import_tasks: setup-RedHat.yml
-  when: ansible_os_family == 'RedHat'
+  when:
+    - ansible_os_family == 'RedHat'
+    - not use_scl
+
+- import_tasks: setup-RedHat-scl.yml
+  when:
+    - ansible_os_family == 'RedHat'
+    - use_scl
 
 - import_tasks: setup-Debian.yml
   when: ansible_os_family == 'Debian'
@@ -30,9 +37,12 @@
     global: true
     state: latest
   environment:
+    PATH: "/opt/rh/rh-nodejs12/root/usr/bin:$PATH"
     NPM_CONFIG_PREFIX: "{{ npm_config_prefix }}"
     NODE_PATH: "{{ npm_config_prefix }}/lib/node_modules"
     NPM_CONFIG_UNSAFE_PERM: "{{ npm_config_unsafe_perm }}"
+  become: yes
+  become_user: "{{ nodejs_install_npm_user }}"
   with_items: "{{ nodejs_npm_global_packages }}"
   tags: ['skip_ansible_lint']
 
